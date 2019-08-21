@@ -4,11 +4,12 @@ export default (expression)=>{
 
     if (!matched) return 0;
 
-    if ( /^[*+\/]/.test(expression)) {
+    if ( /^[*+/]/.test(expression)) {
         return ()=>{
             throw new Error('Cannot start the expression with invalid operators');
         };
     }
 
+    /* eslint-disable-next-line */
     return new Function(`return ${matched[0]}`)();
 }
