@@ -32,7 +32,7 @@
 }
 
 #root {
-    background: black;
+    background: wheat;
     display: flex;
     justify-content: center;
     height: 100vh;
@@ -43,7 +43,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    width: 520px;
+    width: 400px;
     background: black;
 }
 
@@ -89,22 +89,26 @@
 
 .btn {
     flex: 1;
-    border-radius: 25px;
+    border-radius: 20px;
     margin: 5px;
     border: none;
     background: #171717;
     color: white;
     font-size: 45px;
+    min-width: 90px;
+    max-width: 90px;
     outline: none;
     cursor: pointer;
 }
 
 .btn--zero {
     flex: 2;
-    border-radius: 25px;
+    border-radius: 20px;
     align-items: flex-end;
+    min-width: 190px;
+    max-width: 190px;
+    justify-content: center;
     display: flex;
-    padding-left: 50px;
 }
 
 .btn--orange {
@@ -119,14 +123,17 @@
 @media all and (max-width: 530px) {
     .btn {
         font-size: 32px;
+        min-width: 80px;
+        max-width: 80px;
     }
 
     .calculator--container {
-        width: 420px;
+        width: 360px;
     }
 
     .btn--zero {
-        padding-left: 40px;
+        min-width: 170px;
+        max-width: 170px;
     }
 
     .keypad {
@@ -141,7 +148,18 @@
 }
 
 @media all and (max-width: 400px) {
+    .btn {
+        font-size: 32px;
+        min-width: 60px;
+        max-width: 60px;
+    }
+
     .calculator--container {
-        width: 315px;
+        width: 280px;
+    }
+
+    .btn--zero {
+        min-width: 130px;
+        max-width: 130px;
     }
 }

@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { calculate } from './store/actions/calculate';
+import { calculate, deleteLastEntry, clear, evaluateExpression } from './store/actions/calculate';
 import Calculator from './components/calculator';
 import * as fromCalculator from './store';
 import './App.css';
 
 export class App extends Component {
+
+    componentDidMount () {
+        console.log('mounted calculator!');
+    };
+
     render() {
         return (
             <div className='calculator--container'>
@@ -27,6 +32,15 @@ const mapDispatchToProps = (dispatch)=>{
     return {
         calculate: (buttonKey) => {
             dispatch(calculate(buttonKey));
+        },
+        delete: () => {
+            dispatch(deleteLastEntry());
+        },
+        clear: () => {
+            dispatch(clear());
+        },
+        evaluate: () => {
+            dispatch(evaluateExpression());
         },
     }
 };

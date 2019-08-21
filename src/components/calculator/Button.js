@@ -7,7 +7,7 @@ export default ({ onButtonClick, buttonKey }) => {
         'btn',
         operators.includes(buttonKey) ? 'btn--orange' : '',
         specialOperators.includes(buttonKey) ? 'btn--grey' : '',
-        buttonKey === '0' ? 'btn--zero' : ''
+        (buttonKey === 'C' || buttonKey === '0') ? 'btn--zero' : ''
     ];
 
     return (
