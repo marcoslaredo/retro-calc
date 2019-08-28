@@ -7,7 +7,7 @@ export default ({ onButtonClick, buttonKey }) => {
         'btn',
         operators.includes(buttonKey) ? 'btn--orange' : '',
         specialOperators.includes(buttonKey) ? 'btn--grey' : '',
-        (buttonKey === 'C' || buttonKey === '0') ? 'btn--zero' : ''
+        // (buttonKey === 'C' || buttonKey === '0') ? 'btn--double' : ''
     ];
 
     return (
@@ -16,7 +16,11 @@ export default ({ onButtonClick, buttonKey }) => {
             className={ classNames.join(' ').trim() }
             onClick={ handleClick }
         >
-            { buttonKey === '*' ? 'x' : buttonKey }
+            { 
+                buttonKey
+                    .replace(/\*/g, s => { return '\u00D7'})
+                    .replace(/\//g, s => { return '\u00F7'})
+            }
         </button>
     );
 };

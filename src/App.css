@@ -42,15 +42,16 @@
 .calculator--container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    padding: 10px;
+    height: 90vh;
     width: 400px;
     background: black;
 }
 
 .screen--container {
-    flex: 0.6 1;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .screen-bottom, .screen-top {
@@ -62,18 +63,19 @@
 }
 
 .screen-top {
-    flex: 1;
     color: #9e9e9e;
     font-size: 40px;
-    width: 90%;
-    align-self: flex-end;
+    width: 100%;
+    min-height: 55px;
+    align-self: center;
 }
 
 .screen-bottom {
-    flex: 2;
-    font-size: 200px;
-    width: 80%;
-    align-self: flex-end;
+    font-size: 150px;
+    width: 100%;
+    min-height: 200px;
+    max-height: 200px;
+    align-self: center;
 }
 
 .keypad {
@@ -101,7 +103,7 @@
     cursor: pointer;
 }
 
-.btn--zero {
+.btn--double {
     flex: 2;
     border-radius: 20px;
     align-items: flex-end;

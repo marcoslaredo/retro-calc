@@ -1,5 +1,6 @@
 import React from 'react'
 import { Textfit } from 'react-textfit';
+import { changeOperators } from '../../utils/constants';
 
 export default (props)=>{
     return (
@@ -10,7 +11,10 @@ export default (props)=>{
                 mode='single'
                 className='screen-top'
             >
-                { props.expression }
+                { 
+                    props.expression
+                        .replace(/[*/]/g, ex => { return changeOperators[ex]})
+                }
             </Textfit>
             <Textfit
                 max={150}

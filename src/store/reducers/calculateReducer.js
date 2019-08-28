@@ -1,5 +1,6 @@
 import * as types from '../types';
 import calculate from '../../utils/calculate';
+import { changeOperators } from '../../utils/constants';
 
 let initialState = {
     expression: '',
@@ -19,7 +20,10 @@ function setExpression ({ expression, total}, action) {
     switch (action.type) {
         case types.SET_EXPRESSION:
             if ( ['+','/','*','%'].includes(action.payload) && !expression ) {
-                return `${total}${action.payload}`;
+               return `${total}${action.payload}`;
+            }
+            if ( /^\d/.test(action.payload) && !expression ) {
+               return `${''}${action.payload}`;
             }
             return `${!expression && total ? total : ''}${expression + action.payload}`;
     
@@ -34,7 +38,10 @@ export default (state = initialState, action)=>{
             return {
                 ...state,
                 expression,
-                total: calculate(expression) || state.total
+                total: /[/*-+.]/.test(expression[expression.length - 1]) ? 
+                    expression[expression.length - 1]
+                        .replace(/[*/]/g, ex => { return changeOperators[ex]}) :
+                    ''
             }
 
         case types.CLEAR_EXPRESSION:
@@ -45,12 +52,20 @@ export default (state = initialState, action)=>{
             }
 
         case types.DELETE_LAST_EXPRESSION_ENTRY:
-            let newExpression = state.expression;
+            let newExpression = state.expression; 
+
+            if (!state.expression)
+                newExpression = state.total.toString();
+
+            if (['\u232B'].includes(newExpression))
+                return state;
+
             newExpression = newExpression.split('').slice(0, newExpression.length - 1).join('');
+
             return {
                 ...state,
                 expression: newExpression,
-                total: calculate(newExpression)
+                total: '\u232B'
             }
 
         case types.EVALUATE_EXPRESSION:
